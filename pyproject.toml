@@ -1,0 +1,31 @@
+[project]
+name = "ragas-example"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "datasets>=4.4.1",
+    "langchain-google-genai>=3.0.3",
+    "ragas>=0.3.9",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.4",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+
+ignore = [
+    "E501",  # line too long, handled by black
+]
