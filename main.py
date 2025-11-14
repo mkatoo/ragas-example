@@ -5,7 +5,7 @@ from ragas.llms import LangchainLLMWrapper
 from ragas.metrics import AnswerRelevancy, Faithfulness
 
 
-def main():
+def main() -> None:
     dataset = Dataset.from_dict(
         {
             "question": ["What is the capital of France?"],
