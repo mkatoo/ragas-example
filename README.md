@@ -1,6 +1,6 @@
 # ragas-example
 
-example RAGAS using Gemini
+example [RAGAS](https://github.com/explodinggradients/ragas) using Gemini
 
 ## Installation
 
