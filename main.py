@@ -1,8 +1,8 @@
 from datasets import Dataset
-from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from google import genai
 from ragas import evaluate
-from ragas.llms import LangchainLLMWrapper
-from ragas.metrics import AnswerRelevancy, Faithfulness
+from ragas.llms import llm_factory
+from ragas.metrics import Faithfulness
 
 
 def main() -> None:
@@ -20,15 +20,13 @@ def main() -> None:
             ],
         }
     )
-    llm = LangchainLLMWrapper(
-        ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite", temperature=0)
-    )
-    embedding = GoogleGenerativeAIEmbeddings(model="gemini-embedding-001")
+    client = genai.Client()
+    llm = llm_factory(model="gemini-2.5-flash-lite", provider="google", client=client)
     results = evaluate(
         dataset,
-        metrics=[Faithfulness(), AnswerRelevancy()],
-        llm=llm,
-        embeddings=embedding,
+        metrics=[
+            Faithfulness(llm=llm),
+        ],
     )
 
     print(results)
